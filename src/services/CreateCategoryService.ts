@@ -2,8 +2,6 @@ import { CategoryRerquest, ICreateCategoryService } from "../core/interface/Crea
 import AppDataSource from "../db/dataSource";
 import { Category } from "../entities/Category";
 
-
-
 export class CreateCategoryService implements ICreateCategoryService {
 
   async execute({name, description}:CategoryRerquest) : Promise<Category | Error> {
