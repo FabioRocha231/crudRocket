@@ -19,6 +19,6 @@ const AppDataSource = new DataSource({
   const [error, result] = await errorHandler(AppDataSource.initialize())
   if(error) return console.error("Error during Data Source initialization", error)
   console.log("Data Source has been initialized!")
-})()
+})();
 
 export default AppDataSource
