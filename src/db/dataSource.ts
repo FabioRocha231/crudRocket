@@ -1,22 +1,24 @@
-import 'dotenv/config';
+import dotenv from "dotenv"
 import { DataSource } from 'typeorm';
 import { ErrorHandler } from '../core/class/errorHandler';
 
+dotenv.config()
 
-const {errorHandler} = new ErrorHandler();
 const AppDataSource = new DataSource({
-  type: "mysql",
-  host: "localhost",
-  port: 3306,
-  username: "test",
-  password: "test",
-  database: "test",
-})
+  type: process.env.TYPEORM_CONNECTION as any,
+  host: process.env.TYPEORM_HOST ,
+  port: parseInt(process.env.TYPEORM_PORT) ,
+  username: process.env.TYPEORM_USERNAME,
+  password: process.env.TYPEORM_PASSWORD,
+  database: process.env.TYPEORM_DATABASE,
+  migrations: [__dirname + '/migrations/**/*.ts'],
+});
 
-const initialize = async () => {
+(async () => {
+  const {errorHandler} = new ErrorHandler();
   const [error, result] = await errorHandler(AppDataSource.initialize())
   if(error) return console.error("Error during Data Source initialization", error)
-
   console.log("Data Source has been initialized!")
-  initialize();
-}
+})()
+
+export default AppDataSource

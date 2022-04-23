@@ -1,4 +1,5 @@
 import "reflect-metadata";
+import "./db/dataSource"
 
 import express from "express";
 
