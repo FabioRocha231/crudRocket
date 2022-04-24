@@ -6,10 +6,10 @@ import { Category } from "../entities/Category";
 export class CreateCategoryService implements ICreateCategoryService {
   async execute({ name, description }: CategoryRequest): Promise<Category | Error> {
     const repo = AppDataSource.getRepository(Category);
-    const check = await repo.findOne({ where: { name } });
-    if (check instanceof Error) return new Error("Category already exists");
-
-    console.log(name, description);
+    const { errorHandler } = new ErrorHandler();
+    const [error, result] = await errorHandler(repo.findOne({ where: { name } }));
+    if (result) return new Error("Category already exists");
+    console.log(error, result, "debug");
 
     const category = repo.create({ name, description });
     await repo.save(category);
