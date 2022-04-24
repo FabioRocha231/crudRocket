@@ -12,6 +12,7 @@ const AppDataSource = new DataSource({
   password: process.env.TYPEORM_PASSWORD,
   database: process.env.TYPEORM_DATABASE,
   migrations: [__dirname + '/migrations/**/*.ts'],
+  entities: [__dirname + '/entities/**/*.ts'],
 });
 
 (async () => {

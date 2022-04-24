@@ -1,9 +1,9 @@
 import { Category } from "../../entities/Category";
 
-export interface CategoryRerquest  {
+export interface CategoryRequest  {
   name: string;
   description: string;
 }
 export interface ICreateCategoryService {
-  execute({name, description}:CategoryRerquest) : Promise<Category | Error>
+  execute({name, description}:CategoryRequest) : Promise<Category | Error>
 }
