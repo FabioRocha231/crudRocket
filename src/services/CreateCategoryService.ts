@@ -9,8 +9,6 @@ export class CreateCategoryService implements ICreateCategoryService {
     const { errorHandler } = new ErrorHandler();
     const [error, result] = await errorHandler(repo.findOne({ where: { name } }));
     if (result) return new Error("Category already exists");
-    console.log(error, result, "debug");
-
     const category = repo.create({ name, description });
     await repo.save(category);
 
