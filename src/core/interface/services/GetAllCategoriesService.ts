@@ -1,4 +1,4 @@
-import { Category } from "../../entities";
+import { Category } from "../../../entities";
 
 export interface IGetAllCategoriesService {
   execute(): Promise<Category[]>;
