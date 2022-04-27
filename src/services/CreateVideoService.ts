@@ -18,7 +18,7 @@ export class CreateVideoService implements ICreateVideoService {
     const [categoryError, categoryResult] = await errorHandler(
       repoCategory.findOne({ where: { id: category_id } }),
     );
-    console.log(name, description, duration, category_id);
+
     if (!categoryResult) return new Error("Category does not exists");
 
     const video = repo.create({ name, description, duration, category_id });
